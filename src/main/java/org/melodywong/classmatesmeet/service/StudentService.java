@@ -4,5 +4,6 @@ import java.util.*;
 
 public interface StudentService {
     List<Student> getAllStudents();
+    void saveStudent(Student student);
 
 }
