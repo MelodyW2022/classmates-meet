@@ -1,22 +1,21 @@
 package org.melodywong.classmatesmeet.controller;
 
-import org.melodywong.classmatesmeet.repository.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.melodywong.classmatesmeet.model.Student;
-import java.util.*;
 
-@RestController
-@RequestMapping("/api/v1/")
+import org.melodywong.classmatesmeet.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
 public class StudentController {
     @Autowired
-    private StudentRepository studentRepository;
+    private StudentService studentService;
 
-    //get all students
-    @GetMapping("/students")
-    public List<Student> getAllStudents(){
-        return studentRepository.findAll();
+    //display list of students
+    @GetMapping("/")
+    public String viewHomePage(Model model) {
+        model.addAttribute("listStudents", studentService.getAllStudents());
+        return "index";
     }
 }
