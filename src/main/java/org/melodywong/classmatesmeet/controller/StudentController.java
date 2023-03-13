@@ -47,4 +47,12 @@ public class StudentController {
         model.addAttribute("student", student);
         return "update_student";
     }
+
+    @GetMapping("/deleteStudent/{id}")
+    public String deleteStudent(@PathVariable (value = "id") long id, Model model) {
+
+        // call delete student method
+        this.studentService.deleteStudentById(id);
+        return "redirect:/";
+    }
 }
